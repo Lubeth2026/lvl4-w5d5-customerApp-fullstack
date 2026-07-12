@@ -6,10 +6,24 @@ function CreateCustomer() {
         first_name: "", last_name: "", email: "", city: "", state: ""
     })
 
+    async function handleSubmit(event) {
+        event.preventDefault();
+        try {
+            const response = await fetch("http://127.0.0.1:5000/api/customers", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
   return (
     <div>
         <h1>Create Customer</h1>
-        <form >
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="first_name">First Name</label>
                 <input type="text" value={formData.first_name} 
@@ -35,7 +49,7 @@ function CreateCustomer() {
                 <input type="text" value={formData.state} 
                 onChange={(event)=> setFormData({...formData, state: event.target.value})} />
             </div>
-            <button>Create Customer</button>
+            <button type="submit">Create Customer</button>
         </form>
     </div>
   )
