@@ -1,16 +1,60 @@
-# React + Vite
+# Customer Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full-stack customer management application built with React, Flask, and Supabase.
+Users can create new customers and view customer history stored in a Supabase database.
 
-Currently, two official plugins are available:
+## Project Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Home Page
+- Welcome screen for the application
+- Navigation between pages
 
-## React Compiler
+## Create Customer Page
+Users can create new customers through a form.
+Features:
+- Controlled React inputs
+- Form validation through database rules
+- POST request to Flask backend
+- Customer saved to Supabase
+- Success message after creation
+Customer fields:
+- First Name
+- Last Name
+- Email
+- City
+- State
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Customer History Page
+Displays all customers stored in Supabase.
+Features:
+- Fetch customer data from Flask API
+- Store data using React state
+- Display customer records dynamically
+- Styled customer cards
 
-## Expanding the Oxlint configuration
+### How To Run The Project
+Backend Setup
+1. Navigate into the backend folder:
+cd backend
+2. Create and activate virtual environment:
+python -m venv .venv
+.venv\Scripts\activate
+3. Install dependencies:
+pip install -r requirements.txt
+4. Create a .env file:
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+5. Start flask:
+flask run
+6. The backend will run on:
+http://127.0.0.1:5000
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Frontend Setup
+1. Navigate into the frontend folder:
+cd frontend
+2. Install dependencies:
+npm install
+3. Start React:
+npm run dev
+4. The frontend will run on:
+http://localhost:5173
