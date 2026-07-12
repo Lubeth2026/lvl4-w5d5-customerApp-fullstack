@@ -18,3 +18,8 @@ supabase: Client = create_client(
 def health():
     return {"Status": "Good"}
 
+@app.get("/customers")
+def customers_list():
+    response = supabase.table("customers").select("*").execute()
+    return {"customers": response.data}
+
