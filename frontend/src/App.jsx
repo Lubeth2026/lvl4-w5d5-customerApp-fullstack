@@ -4,6 +4,7 @@ import './App.css'
 import CreateCustomer from './components/CreateCustomer'
 import CustomerList from './components/CustomerList'
 import Home from './components/Home'
+import NavBar from './components/NavBar'
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
 
   return (
     <>
-      <h1>Customer App</h1>
+      <h1>Read & Create Full Stack</h1>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} ></Route>
         <Route path="/create" element={<CreateCustomer />} ></Route>
