@@ -19,10 +19,10 @@ function CustomerList() {
   }, [])
 
   return (
-    <div>
+    <div className="list-container">
         <h1>Customer History</h1>
         {customers.map((customer)=> (
-          <div key={customer.id}>
+          <div key={customer.id}className="customer-card" >
             <h2>{customer.first_name} {customer.last_name}</h2>
             <p>{customer.email}</p>
             <p>{customer.city} {customer.state}</p>
