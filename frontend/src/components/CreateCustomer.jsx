@@ -5,6 +5,7 @@ function CreateCustomer() {
     const [formData, setFormData] = useState({
         first_name: "", last_name: "", email: "", city: "", state: ""
     })
+    const [successMessage, setSuccessMessage] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -16,14 +17,20 @@ function CreateCustomer() {
             });
             const data = await response.json();
             console.log(data)
+            setSuccessMessage("Customer created successfully");
+            setFormData({
+                first_name: "", last_name: "", email: "", city: "", state: ""
+            });
         } catch (error) {
             console.log(error)
         }
     }
-
   return (
     <div className="create-container">
         <h1>Create Customer</h1>
+        {successMessage && (
+            <p className="success-message">{successMessage}</p>
+        )}
         <form onSubmit={handleSubmit} className="customer-form" >
             <div className="form-group" >
                 <label htmlFor="first_name">First Name</label>
