@@ -13,7 +13,6 @@ supabase: Client = create_client(
     os.getenv("SUPABASE_URL"),
     os.getenv("SUPABASE_KEY")
 )
-
 @app.route("/")
 def health():
     return {"Status": "Good"}
@@ -26,7 +25,7 @@ def customers_list():
 @app.post("/api/customers")
 def create_customer():
     data = request.get_json()
-
+    
     response = supabase.table("customers").insert({
         "first_name": data["first_name"],
         "last_name": data["last_name"],
