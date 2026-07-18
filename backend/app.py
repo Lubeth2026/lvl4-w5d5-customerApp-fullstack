@@ -7,12 +7,13 @@ from supabase import create_client, Client
 
 load_dotenv()
 app = Flask(__name__)
-CORS(app, origins=["*"])
+CORS(app, origins=["http://localhost:5173"])
 
 supabase: Client = create_client(
     os.getenv("SUPABASE_URL"),
     os.getenv("SUPABASE_KEY")
 )
+
 @app.route("/")
 def health():
     return {"Status": "Good"}
@@ -34,6 +35,12 @@ def create_customer():
         "state": data["state"]
     }).execute()
     return {"message": "Customer was Created", "customer": response.data}
+
+@app.delete("/api/customers/<int:id>")
+def delete_customer(id):
+
+    supabase.table("customers").delete().eq("id", id).execute()
+    return {"message": "Customer was deleted"}
 
 if __name__ == "__main__":
     app.run(debug=True)
