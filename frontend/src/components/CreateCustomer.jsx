@@ -10,11 +10,13 @@ function CreateCustomer() {
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            const response = await fetch("http://127.0.0.1:5000/api/customers", {
+            const response = await fetch("https://lvl4-w5d5-customerapp-fullstack.onrender.com/api/customers",
+              {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });
+                body: JSON.stringify(formData),
+              },
+            );
             const data = await response.json();
             console.log(data)
             setSuccessMessage("Customer created successfully");

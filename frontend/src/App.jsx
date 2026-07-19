@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <h1>Read & Create Full Stack</h1>
+      <h1>CRUD Full Stack</h1>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} ></Route>
