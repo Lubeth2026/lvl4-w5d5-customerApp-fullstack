@@ -26,7 +26,7 @@ def customers_list():
 @app.post("/api/customers")
 def create_customer():
     data = request.get_json()
-    
+
     response = supabase.table("customers").insert({
         "first_name": data["first_name"],
         "last_name": data["last_name"],
@@ -38,9 +38,21 @@ def create_customer():
 
 @app.delete("/api/customers/<int:id>")
 def delete_customer(id):
+    try:
+        response = (supabase.table("customers").delete().eq("id", id).execute())
 
-    supabase.table("customers").delete().eq("id", id).execute()
-    return {"message": "Customer was deleted"}
+        return {
+            "success": True,
+            "message": "Customer deleted successfully.",
+            "customer": response.data
+        }, 200
 
+    except Exception as e:
+        return {
+            "success": False,
+            "message": "This customer cannot be deleted because they have existing orders.",
+            "error": str(e)
+        }, 400
+    
 if __name__ == "__main__":
     app.run(debug=True)
