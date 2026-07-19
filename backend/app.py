@@ -54,5 +54,21 @@ def delete_customer(id):
             "error": str(e)
         }, 400
     
+@app.put("/api/customers/<int:id>")
+def update_customer(id):
+    data = request.get_json()
+
+    response = (supabase.table("customers").update({
+            "first_name": data["first_name"],
+            "last_name": data["last_name"],
+            "email": data["email"],
+            "city": data["city"],
+            "state": data["state"]
+        }).eq("id", id).execute())
+    return {
+        "message": "Customer updated successfully.",
+        "customer": response.data
+    }
+    
 if __name__ == "__main__":
     app.run(debug=True)
